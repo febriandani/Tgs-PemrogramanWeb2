@@ -1,70 +1,3 @@
-        <?php
-//menyertakan file program koneksi.php pada register
-require('../config.php');
-//inisialisasi session
-session_start();
-
-$error = '';
-$validate = '';
-//mengecek apakah form registrasi di submit atau tidak
-if( isset($_POST['submit']) ){
-        $user = "CUS";
-        $rand = rand(1,999);
-        $date = date('m');
-        // menghilangkan backshlases
-        $name     = stripslashes($_POST['nama']);
-        //cara sederhana mengamankan dari sql injection
-        $name     = mysqli_real_escape_string($conn, $name);
-        $alamat    = stripslashes($_POST['alamat']);
-        $alamat    = mysqli_real_escape_string($conn, $alamat);
-        $telp    = stripslashes($_POST['telp']);
-        $telp    = mysqli_real_escape_string($conn, $telp);
-        $email    = stripslashes($_POST['email']);
-        $email    = mysqli_real_escape_string($conn, $email);
-        $password = stripslashes($_POST['password']);
-        $password = mysqli_real_escape_string($conn, $password);
-        $repass   = stripslashes($_POST['repassword']);
-        $repass   = mysqli_real_escape_string($conn, $repass);
-        $concat =  $user . " ". $date . " " .$rand; 
-        //cek apakah nilai yang diinputkan pada form ada yang kosong atau tidak
-        if(!empty(trim($name)) && !empty(trim($alamat)) && !empty(trim($email)) && !empty(trim($telp)) && !empty(trim($password)) && !empty(trim($repass))){
-            //mengecek apakah password yang diinputkan sama dengan re-password yang diinputkan kembali
-            if($password == $repass){
-                //memanggil method cek_nama untuk mengecek apakah user sudah terdaftar atau belum
-                if( cek_email($email,$conn) == 0 ){
-                    //hashing password sebelum disimpan didatabase
-                    $pass  = password_hash($password, PASSWORD_DEFAULT);
-                    //insert data ke database
-                    $query = "INSERT INTO customer (CUS_ID, CUS_NAMA, CUS_ALAMAT, CUS_EMAIL, CUS_PHONE, CUS_PASSWORD) VALUES ('$concat', '$name','$alamat','$email','$telp','$pass')";
-                    $result   = mysqli_query($conn, $query);
-                    //jika insert data berhasil maka akan diredirect ke halaman index.php serta menyimpan data username ke session
-                    if ($result) {
-                        header('Location: Data_Customer.php');
-                    
-                    //jika gagal maka akan menampilkan pesan error
-                    } else {
-                        $error =  'Register User Gagal !!';
-                    }
-                }else{
-                        $error =  'Username sudah terdaftar !!';
-                }
-            }else{
-                $validate = 'Password tidak sama !!';
-            }
-            
-        }else {
-            $error =  'Data tidak boleh kosong !!';
-        }
-    } 
-    //fungsi untuk mengecek username apakah sudah terdaftar atau belum
-    function cek_email($email,$conn){
-        $em = mysqli_real_escape_string($conn, $email);
-        $query = "SELECT * FROM customer WHERE CUS_EMAIL = '$em'";
-        if( $result = mysqli_query($conn, $query) ) return mysqli_num_rows($result);
-    }
-?>
-
-
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -81,6 +14,9 @@ if( isset($_POST['submit']) ){
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+    <!-- icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
 </head>
 
@@ -169,36 +105,36 @@ if( isset($_POST['submit']) ){
                 </div>
             </nav>
             
-            <h2>Add Data Customer</h2>
             <section class="container-fluid mb-4">
             <!-- justify-content-center untuk mengatur posisi form agar berada di tengah-tengah -->
             <section class="row justify-content-center">
             <section class="col-12 col-sm-6 col-md-4">
-                <form class="form-container" action="Data_Customer.php" method="POST">
-                    <h4 class="text-center font-weight-bold"> Sign-Up </h4>
-                    <?php if($error != ''){ ?>
+                <form class="form-container" action="./Customer_Tambah.php" method="POST">
+                    <h4 class="text-center font-weight-bold"> Add Data Customer </h4>
+                    <?php include "Customer_Tambah.php"; ?> <?php if($error != ''){ ?>
                         <div class="alert alert-danger" role="alert"><?= $error; ?></div>
                     <?php } ?>
                    
                     <div class="form-group">
-                        <label for="name">Nama</label>
+                        <label for="name">Name</label>
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama">
                     </div>
                     <div class="form-group">
-                        <label for="name">Alamat</label>
+                        <label for="name">Address</label>
                         <textarea class="form-control" id="name" name="alamat" placeholder="Masukkan Alamat"></textarea> 
                     </div>
                     <div class="form-group">
-                        <label for="name">Telepon</label>
+                        <label for="name">Number Phone</label>
                         <input type="number" class="form-control" id="name" name="telp" placeholder="Masukkan Nomor Telepon"> 
                     </div>
                     <div class="form-group">
-                        <label for="InputEmail">Alamat Email</label>
+                        <label for="InputEmail">Email Address</label>
                         <input type="email" class="form-control" id="InputEmail" name="email" aria-describeby="emailHelp" placeholder="Masukkan email">
                     </div>
                     <div class="form-group">
                         <label for="InputPassword">Password</label>
-                        <input type="password" class="form-control" id="InputPassword" name="password" placeholder="Password">
+                        <input type="password" class="form-control" id="InputPassword" name="password" placeholder="Password"> 
+                        <i class="far fa-eye" id="Eye-pass" style="cursor: pointer;" onclick="myFunction()"></i>Show Password
                         <?php if($validate != '') {?>
                             <p class="text-danger"><?= $validate; ?></p>
                         <?php }?>
@@ -210,7 +146,7 @@ if( isset($_POST['submit']) ){
                             <p class="text-danger"><?= $validate; ?></p>
                         <?php }?>
                     </div>
-                    <button type="submit" name="submit" class="btn btn-primary btn-block">Register</button>
+                    <button type="submit" name="" class="btn btn-primary btn-block">Register</button>
                 </form>
             </section>
             </section>
@@ -303,6 +239,25 @@ if( isset($_POST['submit']) ){
             });
         });
     </script>
+
+        <script>
+        function myFunction() {
+            var x = document.getElementById("InputPassword");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+            this.classList.toggle('fa-eye-slash');
+            }
+
+            // function eye(){
+            //     var y = document.getElementById("Eye-pass");
+            //     if ()
+            // }
+        </script>
+
+
 </body>
 
 </html>

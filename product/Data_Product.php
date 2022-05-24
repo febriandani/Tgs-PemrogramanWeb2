@@ -143,7 +143,7 @@
 				<input type="file" name="foto" required="required">
 				<p style="color: red">Ekstensi yang diperbolehkan .png | .jpg | .jpeg | .gif</p>
 			</div>			
-			<input type="submit" name="" value="Simpan" class="btn btn-primary">
+			<input type="submit" name="" value="submit" class="btn btn-primary">
 
                     </form>
                     <div class="line"></div>
