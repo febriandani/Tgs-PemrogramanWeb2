@@ -6,8 +6,9 @@ $error = '';
 $validate = '';
 //mengecek apakah form registrasi di submit atau tidak
 if(isset($_POST['submit']) ){
-        $user = "CUS";
+        // $user = "CUS";
         $rand = rand(1,999);
+        $year = date('y');
         $date = date('m');
         // menghilangkan backshlases
         $name     = stripslashes($_POST['nama']);
@@ -23,7 +24,7 @@ if(isset($_POST['submit']) ){
         $password = mysqli_real_escape_string($conn, $password);
         $repass   = stripslashes($_POST['repassword']);
         $repass   = mysqli_real_escape_string($conn, $repass);
-        $concat =  $user . " ". $date . " " .$rand; 
+        $concat =  $year . "". $date . "" .$rand; 
         //cek apakah nilai yang diinputkan pada form ada yang kosong atau tidak
         if(!empty(trim($name)) && !empty(trim($alamat)) && !empty(trim($email)) && !empty(trim($telp)) && !empty(trim($password)) && !empty(trim($repass))){
             //mengecek apakah password yang diinputkan sama dengan re-password yang diinputkan kembali

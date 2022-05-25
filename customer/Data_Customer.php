@@ -134,8 +134,7 @@
 
                     <label for="InputPassword">Password</label>
                     <div class="input-group mb-2">
-                       
-                        <input type="password" class="form-control" id="InputPassword" placeholder="Password" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="password" class="form-control" name="password" id="InputPassword" placeholder="Password" aria-label="Recipient's username" aria-describedby="button-addon2">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="myFunction()"><i class="far fa-eye" id="Eye-pass" style="cursor: pointer;" onclick="myFunction()"></i></button>
                         <?php if($validate != '') {?>
                             <p class="text-danger"><?= $validate; ?></p>
@@ -149,7 +148,7 @@
                             <p class="text-danger"><?= $validate; ?></p>
                         <?php }?>
                     </div>
-                    <button type="submit" name="" class="btn btn-primary btn-block">Register</button>
+                    <button type="submit" name="submit" class="btn btn-primary btn-block">Register</button>
                 </form>
             </section>
             </section>
