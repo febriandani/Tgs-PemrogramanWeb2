@@ -104,7 +104,12 @@
                 </div>
             </nav>
             
-            <h2>Add & Edit Data Category Product</h2>
+              
+            <section class="container-fluid mb-4">
+            <!-- justify-content-center untuk mengatur posisi form agar berada di tengah-tengah -->
+            <section class="row justify-content-center">
+            <section class="col-12 col-sm-6 col-md-4">
+            <h4 class="text-center font-weight-bold"> Add Data Category Product </h4>
                 <div class="container">
                     <form action="./Category_Product_Tambah.php" method="POST">
 			<div class="form-group">
@@ -119,6 +124,10 @@
 			<input type="submit" name="" value="Simpan" class="btn btn-primary">
 
                     </form>
+                    </section>
+            </section>
+        </section>
+
                     <div class="line"></div>
 
                     <table class="table">

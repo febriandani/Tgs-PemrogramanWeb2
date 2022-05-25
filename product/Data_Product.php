@@ -103,7 +103,11 @@
                 </div>
             </nav>
             
-            <h2>Add & Edit Data Product</h2>
+            <section class="container-fluid mb-4">
+            <!-- justify-content-center untuk mengatur posisi form agar berada di tengah-tengah -->
+            <section class="row justify-content-center">
+            <section class="col-12 col-sm-6 col-md-4">
+            <h4 class="text-center font-weight-bold"> Add Data Product </h4>
                 <div class="container">
                     <form action="./Data_Product_Tambah.php" method="POST" enctype="multipart/form-data">
 			<div class="form-group">
@@ -138,14 +142,26 @@
             ?>
             </select>
             </div>
+
+            <!-- <div class="input-group mb-3">
+    <label class="input-group-text" for="inputGroupFile01">Upload</label>
+    <input type="file" class="form-control" id="inputGroupFile01">
+    </div> -->
+
 			<div class="form-group">
 				<label>Foto :</label>
-				<input type="file" name="foto" required="required">
+				<input  type="file" name="foto" required="required">
 				<p style="color: red">Ekstensi yang diperbolehkan .png | .jpg | .jpeg | .gif</p>
 			</div>			
 			<input type="submit" name="" value="submit" class="btn btn-primary">
 
                     </form>
+
+                    </section>
+            </section>
+        </section>
+
+
                     <div class="line"></div>
 
                     <table class="table">
