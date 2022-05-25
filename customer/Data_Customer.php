@@ -131,14 +131,17 @@
                         <label for="InputEmail">Email Address</label>
                         <input type="email" class="form-control" id="InputEmail" name="email" aria-describeby="emailHelp" placeholder="Masukkan email">
                     </div>
-                    <div class="form-group">
-                        <label for="InputPassword">Password</label>
-                        <input type="password" class="form-control" id="InputPassword" name="password" placeholder="Password"> 
-                        <i class="far fa-eye" id="Eye-pass" style="cursor: pointer;" onclick="myFunction()"></i>Show Password
+
+                    <label for="InputPassword">Password</label>
+                    <div class="input-group mb-2">
+                       
+                        <input type="password" class="form-control" id="InputPassword" placeholder="Password" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="myFunction()"><i class="far fa-eye" id="Eye-pass" style="cursor: pointer;" onclick="myFunction()"></i></button>
                         <?php if($validate != '') {?>
                             <p class="text-danger"><?= $validate; ?></p>
                         <?php }?>
                     </div>
+
                     <div class="form-group">
                         <label for="InputPassword">Re-Password</label>
                         <input type="password" class="form-control" id="InputRePassword" name="repassword" placeholder="Re-Password">
@@ -218,9 +221,6 @@
                                         
                 </div>
 
-            
-         
-
         </div>
     </div>
 
@@ -248,13 +248,7 @@
             } else {
                 x.type = "password";
             }
-            this.classList.toggle('fa-eye-slash');
-            }
-
-            // function eye(){
-            //     var y = document.getElementById("Eye-pass");
-            //     if ()
-            // }
+        }
         </script>
 
 
