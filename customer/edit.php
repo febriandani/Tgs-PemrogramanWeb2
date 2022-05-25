@@ -125,22 +125,22 @@ include '../config.php';
         </div>	
         <div class="form-group">
             <label for="name">Nama</label>
-            <input type="text" name="nama" class="form-control" value="<?php echo $data['CUS_NAMA'] ?>">
+            <input type="text" name="nama" required class="form-control" value="<?php echo $data['CUS_NAMA'] ?>">
         </div>	
         <div class="form-group">
             <label for="name">Alamat</label>
-            <input type="text" name="alamat" class="form-control" value="<?php echo $data['CUS_ALAMAT'] ?>">
+            <input type="text" name="alamat" required class="form-control" value="<?php echo $data['CUS_ALAMAT'] ?>">
         </div>	
         <div class="form-group">
             <label for="name">Phone</label>
-            <input type="text" name="phone" class="form-control" value="<?php echo $data['CUS_PHONE'] ?>">
+            <input type="text" name="phone" required class="form-control" value="<?php echo $data['CUS_PHONE'] ?>">
         </div>	
         <div class="form-group">
             <label for="name">Email</label>
-            <input type="text" name="email" class="form-control" value="<?php echo $data['CUS_EMAIL'] ?>">
+            <input type="text" name="email" required class="form-control" value="<?php echo $data['CUS_EMAIL'] ?>">
             <?php }?>
             </div>
-            <button type="submit" class="btn btn-success">UPDATE</button>
+            <button type="submit" name="submit" required class="btn btn-success">UPDATE</button>
 	</form>
        
                 </div> 
