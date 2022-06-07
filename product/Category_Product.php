@@ -1,3 +1,12 @@
+<?php
+session_start();
+ 
+if (!isset($_SESSION['U_NAMA'])) {
+    header("Location: ../auth/login.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 

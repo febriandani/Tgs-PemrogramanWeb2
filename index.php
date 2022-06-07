@@ -1,3 +1,12 @@
+<?php
+session_start();
+ 
+if (!isset($_SESSION['U_NAMA'])) {
+    header("Location: ./auth/login.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -62,11 +71,6 @@
             <a href="#">Contact</a>
         </li>
     </ul>
-
-    <!-- <ul class="list-unstyled CTAs">
-        <li>
-            <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
-        </li> -->
     </ul>
 </nav>
 
@@ -102,10 +106,19 @@
                         </ul>
                     </div>
                 </div>
+                <button type="button" class="btn btn-danger"><a href="./auth/logout.php" class="btn">Logout</a></button>
             </nav>
+            <?php echo "<h3>Selamat Datang, " . $_SESSION['U_NAMA'] ."!". "</h5>"; ?>
+        <div class="d-flex justify-content-center">
+        <!-- <form action="" method="POST" class="login-email">
             
-            <div class="d-flex justify-content-center">
+             
+            <!-- <div class="input-group">
+            <a href="./auth/logout.php" class="btn">Logout</a>
+            </div> -->
+        </form> 
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          
           <div class="card">
             <div class="card-header p-3 pt-2">
               <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
@@ -125,9 +138,6 @@
               </div>
             </div>
             <hr class="dark horizontal my-0">
-            <!-- <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than lask month</p>
-            </div> -->
           </div>
         </div>
             
@@ -145,8 +155,6 @@
                 $result=mysqli_query($conn, "SELECT count(P_Nama) as total from produk");
                 $data=mysqli_fetch_assoc($result);
                 echo "<h4 class='mb-0'>".$data['total']."</h4>";
-                // echo "<p>".$data['total']."</p>";
-
                 ?>
               </div>
             </div>
@@ -169,8 +177,6 @@
                 $result=mysqli_query($conn, "SELECT count(KP_Kode) as total from kategori_produk");
                 $data=mysqli_fetch_assoc($result);
                 echo "<h4 class='mb-0'>".$data['total']."</h4>";
-                // echo "<p>".$data['total']."</p>";
-
                 ?>
               </div>
             </div>

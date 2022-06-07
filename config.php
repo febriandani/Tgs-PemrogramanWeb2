@@ -8,8 +8,8 @@ $db = "toko_online";
 $conn = mysqli_connect($servername, $username, $password, $db);
 
 // Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+  die("<script>alert('Gagal tersambung dengan database.')</script>");
 }
 
 
